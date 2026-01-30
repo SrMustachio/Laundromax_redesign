@@ -1,41 +1,68 @@
-<nav class="nav-island">
-    <div class="nav-content">
-        <a href="index.html" class="logo">Ciudad <span>LaundroMax</span></a>
-        
-        <ul class="nav-links">
-            <li class="dropdown">
-                <a href="index.html#servicios" class="dropbtn">
-                    Servicios <i class="fa-solid fa-chevron-down"></i>
-                </a>
-                <div class="dropdown-content">
-                    <a href="index.html#servicios">Residencial / Individual</a>
-                    <a href="airbnb.html">Airbnb & Comercial</a>
-                    <a href="corporate.html">Corporativo</a>
-                </div>
-            </li>
-            <li><a href="about.html">Sobre Nosotros</a></li>
-            <li><a href="sucursales.html">Sucursales</a></li>
-            <li><a href="empleos.html">Empleos</a></li>
-            <li><a href="https://cleancloudapp.com/s3/8719#/" class="login-link">Log-In</a></li>
-        </ul>
+<nav class="nav-island" id="mainNav">
+  <div class="nav-content">
+    <a href="index.html" class="logo">Ciudad <span>LaundroMax</span></a>
 
-        <div class="nav-right">
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-            </button>
+    <ul class="nav-links desktop-only">
+      <li class="dropdown">
+        <a href="index.html#servicios" class="dropbtn">
+          Servicios <i class="fa-solid fa-chevron-down"></i>
+        </a>
+        <div class="dropdown-content">
+          <a href="index.html#servicios">Residencial / Individual</a>
+          <a href="airbnb.html">Airbnb & Comercial</a>
+          <a href="corporate.html">Corporativo</a>
         </div>
+      </li>
+      <li><a href="about.html">Sobre Nosotros</a></li>
+      <li><a href="sucursales.html">Sucursales</a></li>
+      <li><a href="empleos.html">Empleos</a></li>
+      <li><a href="https://cleancloudapp.com/s3/8719#/" class="login-link">Log-In</a></li>
+    </ul>
+
+    <div class="nav-right">
+      
+      <button class="theme-toggle desktop-toggle" aria-label="Toggle Dark Mode">
+        <i class="fa-regular fa-sun icon-sun"></i>
+        <i class="fa-regular fa-moon icon-moon"></i>
+      </button>
+
+      <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Open menu" aria-expanded="false">
+        <i class="fa-solid fa-bars icon-open"></i>
+        <i class="fa-solid fa-xmark icon-close"></i>
+      </button>
+
     </div>
+  </div>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-links">
-        <a href="index.html#servicios" onclick="toggleMenu()">Servicios Residenciales</a>
-        <a href="airbnb.html" onclick="toggleMenu()">Airbnb & Comercial</a>
-        <a href="corporate.html" onclick="toggleMenu()">Corporativo</a>
-        <a href="about.html" onclick="toggleMenu()">Sobre Nosotros</a>
-        <a href="sucursales.html" onclick="toggleMenu()">Sucursales</a>
-        <a href="empleos.html" onclick="toggleMenu()">Empleos</a>
-        <a href="https://cleancloudapp.com/s3/8719#/" onclick="toggleMenu()">Log-In</a>
+<div class="mobile-menu-overlay" id="mobileMenu">
+  <div class="mobile-links-container">
+    
+    <div class="mobile-theme-container">
+       <div class="theme-label-group">
+          <i class="fa-solid fa-circle-half-stroke label-icon"></i>
+          <span class="theme-label">Modo Oscuro</span>
+       </div>
+       
+       <button class="theme-toggle mobile-toggle" aria-label="Toggle Dark Mode">
+          <i class="fa-regular fa-sun icon-sun"></i>
+          <i class="fa-regular fa-moon icon-moon"></i>
+       </button>
     </div>
+
+    <div class="divider"></div>
+
+    <span class="mobile-label">Servicios</span>
+    <a href="index.html#servicios" class="m-link">Residencial / Individual</a>
+    <a href="airbnb.html" class="m-link">Airbnb & Comercial</a>
+    <a href="corporate.html" class="m-link">Corporativo</a>
+    
+    <div class="divider"></div>
+    
+    <span class="mobile-label">Empresa</span>
+    <a href="about.html" class="m-link">Sobre Nosotros</a>
+    <a href="sucursales.html" class="m-link">Sucursales</a>
+    <a href="empleos.html" class="m-link">Empleos</a>
+    <a href="https://cleancloudapp.com/s3/8719#/" class="m-link highlight">Log-In</a>
+  </div>
 </div>

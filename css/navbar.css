@@ -1,246 +1,252 @@
 /* =========================================
-   1. BASE STYLES (Mobile First / Desktop Default)
+   1. VARIABLES
    ========================================= */
-
-/* The Floating Header */
-.nav-island {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1080px;
-    background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--border-color);
-    border-radius: 100px;
-    padding: 10px 20px;
-    z-index: 1000; /* Stays on top of everything */
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s ease;
+:root {
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-mobile: #ffffff;
+  --text-main: #333333;
+  --text-muted: #666666;
+  --border-color: rgba(0,0,0,0.1);
+  --brand-orange: #fd9712;
+  --brand-blue: #0871ab;
+  --nav-z-index: 2000;
+  --menu-z-index: 1900;
 }
 
-.nav-content { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+body.dark-mode {
+  --bg-card: rgba(30, 30, 30, 0.95);
+  --bg-card-mobile: #1a1a1a;
+  --text-main: #ffffff;
+  --text-muted: #aaaaaa;
+  --border-color: rgba(255,255,255,0.1);
 }
 
-/* Logo */
-.logo { 
-    font-size: 1.3rem; 
-    font-weight: 800; 
-    text-decoration: none; 
-    color: var(--text-main); 
-    font-family: 'Poppins', sans-serif;
-    letter-spacing: -0.5px;
-}
-.logo span { color: #fd9712; }
-
-/* Desktop Navigation Links */
-.nav-links { 
-    display: flex; 
-    list-style: none; 
-    gap: 30px; 
-    margin: 0;
-    padding: 0;
-    align-items: center;
-}
-
-.nav-links a { 
-    text-decoration: none; 
-    color: var(--text-main); 
-    font-weight: 500; 
-    font-size: 0.95rem; 
-    transition: color 0.2s;
-}
-
-.nav-links a:hover { color: #0871ab; }
-
-/* Right Side Area (Theme Toggle + Button + Hamburger) */
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-/* Subscribe Button */
-.nav-btn {
-    background: #fd9712;
-    color: white;
-    padding: 10px 24px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background 0.2s;
-    white-space: nowrap;
-}
-.nav-btn:hover { background: #e88b0f; }
-
-/* Theme Toggle Button */
-.theme-toggle {
-    background: rgba(0, 0, 0, 0.05);
-    border: none;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--text-main);
-    transition: all 0.3s ease;
-}
-.theme-toggle:hover { background: rgba(0, 0, 0, 0.1); }
-
-/* Icons visibility logic */
-.icon-moon { display: none; }
-.icon-sun { display: block; }
-
-/* Dark Mode Overrides */
-body.dark-mode .theme-toggle {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffcc00;
-}
-body.dark-mode .icon-sun { display: none; }
-body.dark-mode .icon-moon { display: block; }
-
+body.menu-open { overflow: hidden; }
 
 /* =========================================
-   2. DROPDOWN STYLES
+   2. NAV ISLAND (Base)
    ========================================= */
-.dropdown {
-    position: relative;
-    display: block; /* Ensure it takes space */
+.nav-island {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1080px;
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  padding: 10px 25px;
+  z-index: var(--nav-z-index);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
-.dropdown .fa-chevron-down {
-    font-size: 0.7rem;
-    margin-left: 5px;
-    transition: transform 0.3s;
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.dropdown:hover .fa-chevron-down {
-    transform: rotate(180deg);
+.logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--text-main);
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: -0.5px;
 }
+.logo span { color: var(--brand-orange); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* =========================================
+   3. DESKTOP LINKS & DROPDOWN
+   ========================================= */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--brand-blue); }
+
+/* Dropdown Logic */
+.dropdown { position: relative; height: 100%; display: flex; align-items: center; }
 
 .dropdown-content {
-    display: none; /* Hidden by default */
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--bg-card);
-    min-width: 200px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    border-radius: 12px;
-    padding: 10px 0;
-    border: 1px solid var(--border-color);
-    z-index: 1001;
-    flex-direction: column;
-    margin-top: 10px;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--bg-card);
+  min-width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  padding: 8px 0;
+  border: 1px solid var(--border-color);
+  flex-direction: column;
+  margin-top: 15px;
 }
 
-/* Show on hover */
-.dropdown:hover .dropdown-content {
-    display: flex;
-    animation: fadeIn 0.2s ease;
+/* Invisible Bridge (Prevents closing) */
+.dropdown-content::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: transparent;
+  display: block;
 }
+
+.dropdown:hover .dropdown-content { display: flex; }
 
 .dropdown-content a {
-    padding: 12px 20px;
-    color: var(--text-main);
-    white-space: nowrap;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  white-space: nowrap;
 }
-
-.dropdown-content a:hover {
-    background-color: rgba(0,0,0,0.05);
-    color: var(--brand-orange);
-}
+.dropdown-content a:hover { color: var(--brand-orange); background: rgba(0,0,0,0.05); }
 
 /* =========================================
-   3. MOBILE STYLES (The Fix)
+   4. BUTTONS & ICONS (Font Awesome)
    ========================================= */
-
-/* Default State: Hamburger and Mobile Menu are HIDDEN on Desktop */
-.hamburger { display: none; }
-.mobile-menu { display: none; }
-
-/* Triggers when screen is smaller than 768px (Tablets/Phones) */
-@media (max-width: 768px) {
-
-    /* 1. Hide Desktop Elements */
-    .nav-links { display: none; }   /* Hides the ul list */
-    .desktop-only { display: none; } /* Hides the Subscribe button */
-
-    /* 2. Show Hamburger Icon */
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 5px;
-    }
-
-    .hamburger span {
-        width: 25px;
-        height: 3px;
-        background-color: var(--text-main);
-        border-radius: 2px;
-        transition: 0.3s;
-    }
-
-    /* 3. The Full Screen Mobile Menu Overlay */
-    .mobile-menu {
-        display: none; /* Hidden until JS adds .active */
-        position: fixed;
-        top: 0; 
-        left: 0;
-        width: 100%;
-        height: 100vh; /* Full screen */
-        background-color: var(--bg-main);
-        z-index: 999; /* Below the nav-island (1000) so you can still click the close button */
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding-top: 80px; /* Push links down so they don't hide behind the header */
-    }
-
-    /* This class is added by JS when you click hamburger */
-    .mobile-menu.active {
-        display: flex;
-    }
-
-    /* Mobile Links Styling */
-    .mobile-links {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 30px;
-    }
-
-    .mobile-links a {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--text-main);
-        text-decoration: none;
-    }
-
-    .mobile-cta {
-        background: #fd9712;
-        color: white !important;
-        padding: 15px 30px;
-        border-radius: 50px;
-        font-size: 1.2rem !important;
-    }
+.theme-toggle, .hamburger {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem; /* Size of FA Icons */
+  color: var(--text-main);
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, 5px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+/* Theme Toggle Logic */
+.theme-toggle .icon-moon { display: none; }
+.theme-toggle .icon-sun { display: block; }
+
+body.dark-mode .theme-toggle .icon-moon { display: block; }
+body.dark-mode .theme-toggle .icon-sun { display: none; }
+
+/* Hamburger Icon Logic */
+.hamburger .icon-close { display: none; }
+.hamburger .icon-open { display: block; }
+
+.hamburger[aria-expanded="true"] .icon-close { display: block; }
+.hamburger[aria-expanded="true"] .icon-open { display: none; }
+
+
+/* =========================================
+   5. MOBILE STYLES
+   ========================================= */
+/* Default: Hide Mobile Elements */
+.hamburger { display: none; }
+.mobile-menu-overlay { display: none; }
+
+@media (max-width: 850px) {
+  /* Hide Desktop */
+  .desktop-only, .desktop-toggle { display: none !important; }
+
+  /* Show Hamburger */
+  .hamburger { display: flex; z-index: 2002; }
+
+  /* Mobile Overlay */
+  .mobile-menu-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    background-color: var(--bg-card-mobile);
+    z-index: 1900;
+    padding-top: 100px; /* Below Nav Island */
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s ease;
+    overflow-y: auto; /* Fixes cut-off content */
+    padding-bottom: 40px;
+  }
+
+  .mobile-menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Content Layout */
+  .mobile-links-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Theme Row */
+  .mobile-theme-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    padding: 15px 0;
+  }
+  
+  .theme-label-group { display: flex; gap: 10px; align-items: center; color: var(--text-main); }
+  .theme-label { font-weight: 600; }
+
+  /* Links */
+  .m-link {
+    width: 80%;
+    padding: 15px 0;
+    text-decoration: none;
+    color: var(--text-main);
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .m-link:last-of-type { border-bottom: none; }
+
+  .mobile-label {
+    width: 80%;
+    margin: 30px 0 10px 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .divider {
+    width: 80%;
+    height: 1px;
+    background: var(--border-color);
+    margin: 10px 0;
+  }
+
+  .m-link.highlight { 
+    color: var(--brand-blue);
+    font-weight: 800;
+    text-align: center;
+    font-size: 1.4rem;
+    border: none;
+    margin-top: 20px;
+  }
 }
