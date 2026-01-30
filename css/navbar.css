@@ -1,3 +1,8 @@
+/* =========================================
+   1. BASE STYLES (Mobile First / Desktop Default)
+   ========================================= */
+
+/* The Floating Header */
 .nav-island {
     position: fixed;
     top: 20px;
@@ -10,8 +15,8 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-color);
     border-radius: 100px;
-    padding: 10px 10px;
-    z-index: 1000;
+    padding: 10px 20px;
+    z-index: 1000; /* Stays on top of everything */
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
     transition: all 0.3s ease;
 }
@@ -20,40 +25,47 @@
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    padding: 0 15px;
 }
 
+/* Logo */
 .logo { 
     font-size: 1.3rem; 
     font-weight: 800; 
     text-decoration: none; 
-    color: #1d1d1f; 
+    color: var(--text-main); 
     font-family: 'Poppins', sans-serif;
     letter-spacing: -0.5px;
 }
-
 .logo span { color: #fd9712; }
 
+/* Desktop Navigation Links */
 .nav-links { 
     display: flex; 
     list-style: none; 
-    gap: 32px; 
+    gap: 30px; 
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
 .nav-links a { 
     text-decoration: none; 
-    color: #1d1d1f; 
+    color: var(--text-main); 
     font-weight: 500; 
-    font-size: 0.9rem; 
+    font-size: 0.95rem; 
     transition: color 0.2s;
 }
 
 .nav-links a:hover { color: #0871ab; }
 
-.login-link { opacity: 0.8; }
+/* Right Side Area (Theme Toggle + Button + Hamburger) */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 
+/* Subscribe Button */
 .nav-btn {
     background: #fd9712;
     color: white;
@@ -63,16 +75,11 @@
     font-weight: 600;
     font-size: 0.9rem;
     transition: background 0.2s;
+    white-space: nowrap;
 }
-
 .nav-btn:hover { background: #e88b0f; }
 
-@media (max-width: 768px) {
-    .nav-links { display: none; }
-}
-
-/* Add to css/navbar.css */
-
+/* Theme Toggle Button */
 .theme-toggle {
     background: rgba(0, 0, 0, 0.05);
     border: none;
@@ -83,40 +90,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--brand-dark); /* Uses our variable for auto-switching */
+    color: var(--text-main);
     transition: all 0.3s ease;
 }
+.theme-toggle:hover { background: rgba(0, 0, 0, 0.1); }
 
-.theme-toggle:hover {
-    background: rgba(0, 0, 0, 0.1);
-    transform: rotate(15deg);
-}
-
-/* Icon visibility logic */
+/* Icons visibility logic */
 .icon-moon { display: none; }
 .icon-sun { display: block; }
 
-/* When Dark Mode is Active */
+/* Dark Mode Overrides */
 body.dark-mode .theme-toggle {
     background: rgba(255, 255, 255, 0.1);
-    color: #ffcc00; /* Moon color */
+    color: #ffcc00;
 }
-
 body.dark-mode .icon-sun { display: none; }
 body.dark-mode .icon-moon { display: block; }
 
-/* Ensure mobile menu matches theme */
-.mobile-menu {
-    background: var(--bg-main); /* Will become black in dark mode */
-}
-body.dark-mode .mobile-links a {
-    color: var(--text-main);
-}
 
-/* --- NAVBAR DROPDOWN STYLES --- */
-
+/* =========================================
+   2. DROPDOWN STYLES
+   ========================================= */
 .dropdown {
     position: relative;
+    display: block; /* Ensure it takes space */
 }
 
 .dropdown .fa-chevron-down {
@@ -130,21 +127,23 @@ body.dark-mode .mobile-links a {
 }
 
 .dropdown-content {
-    display: none;
+    display: none; /* Hidden by default */
     position: absolute;
     top: 100%;
-    left: 0;
-    background-color: var(--bg-card); /* Adaptive background */
-    min-width: 220px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-card);
+    min-width: 200px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     border-radius: 12px;
     padding: 10px 0;
     border: 1px solid var(--border-color);
-    z-index: 1000;
+    z-index: 1001;
     flex-direction: column;
+    margin-top: 10px;
 }
 
-/* Show dropdown on hover */
+/* Show on hover */
 .dropdown:hover .dropdown-content {
     display: flex;
     animation: fadeIn 0.2s ease;
@@ -153,11 +152,7 @@ body.dark-mode .mobile-links a {
 .dropdown-content a {
     padding: 12px 20px;
     color: var(--text-main);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition: background 0.2s;
-    display: block;
+    white-space: nowrap;
 }
 
 .dropdown-content a:hover {
@@ -165,17 +160,87 @@ body.dark-mode .mobile-links a {
     color: var(--brand-orange);
 }
 
-/* Dark Mode tweaks for dropdown */
-body.dark-mode .dropdown-content {
-    background-color: #1c1c1e;
-    border-color: rgba(255,255,255,0.1);
+/* =========================================
+   3. MOBILE STYLES (The Fix)
+   ========================================= */
+
+/* Default State: Hamburger and Mobile Menu are HIDDEN on Desktop */
+.hamburger { display: none; }
+.mobile-menu { display: none; }
+
+/* Triggers when screen is smaller than 768px (Tablets/Phones) */
+@media (max-width: 768px) {
+
+    /* 1. Hide Desktop Elements */
+    .nav-links { display: none; }   /* Hides the ul list */
+    .desktop-only { display: none; } /* Hides the Subscribe button */
+
+    /* 2. Show Hamburger Icon */
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background-color: var(--text-main);
+        border-radius: 2px;
+        transition: 0.3s;
+    }
+
+    /* 3. The Full Screen Mobile Menu Overlay */
+    .mobile-menu {
+        display: none; /* Hidden until JS adds .active */
+        position: fixed;
+        top: 0; 
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Full screen */
+        background-color: var(--bg-main);
+        z-index: 999; /* Below the nav-island (1000) so you can still click the close button */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 80px; /* Push links down so they don't hide behind the header */
+    }
+
+    /* This class is added by JS when you click hamburger */
+    .mobile-menu.active {
+        display: flex;
+    }
+
+    /* Mobile Links Styling */
+    .mobile-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .mobile-links a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text-main);
+        text-decoration: none;
+    }
+
+    .mobile-cta {
+        background: #fd9712;
+        color: white !important;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-size: 1.2rem !important;
+    }
 }
 
-body.dark-mode .dropdown-content a:hover {
-    background-color: rgba(255,255,255,0.1);
-}
-
+/* Animation */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translate(-50%, 5px); }
+    to { opacity: 1; transform: translate(-50%, 0); }
 }
