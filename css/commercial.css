@@ -1,0 +1,443 @@
+/* --- COMMERCIAL / AIRBNB PAGE STYLES --- */
+
+.comm-page {
+    padding-top: 80px; /* Espacio para el navbar */
+    background-color: var(--bg-main);
+}
+
+/* 1. SECCIÓN HERO */
+.comm-hero {
+    padding: 100px 0 80px;
+    background: linear-gradient(to bottom, var(--bg-main) 0%, rgba(8, 113, 171, 0.05) 100%);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 50px;
+}
+
+.comm-hero h1 {
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    line-height: 1.1;
+    margin-bottom: 25px;
+    color: var(--text-main);
+    font-weight: 800;
+}
+
+
+
+.comm-hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 500px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.btn-text-link {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Gráfico del Hero */
+.hero-visual-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-comm-image {
+    width: 100%;
+    height: 400px;
+    background: var(--brand-blue);
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8rem;
+    color: white;
+    box-shadow: 0 30px 60px rgba(8, 113, 171, 0.2);
+}
+
+.glass-comm-card {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 15px 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    z-index: 10;
+    font-weight: 700;
+    color: #1d1d1f;
+}
+
+/* 2. BANNER DESLIZANTE (Zonas de Servicio) */
+.scrolling-banner {
+    background: var(--brand-dark);
+    color: white;
+    padding: 20px 0;
+    overflow: hidden;
+    display: flex;
+}
+
+.scrolling-banner p {
+    margin: 0;
+    font-size: 1.1rem;
+    white-space: nowrap;
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollText 25s linear infinite;
+}
+
+@keyframes scrollText {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+}
+
+/* 3. SECCIÓN DE PASOS (JOURNEY) */
+.steps-section {
+    padding: 100px 0;
+}
+
+.journey-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 60px;
+    gap: 20px;
+}
+
+.journey-step {
+    text-align: center;
+    flex: 1;
+    z-index: 2;
+}
+
+.journey-line {
+    flex: 0.5;
+    height: 2px;
+    background: var(--border-color);
+    margin-top: -50px; /* Ajuste para alinear con los círculos */
+}
+
+.step-num {
+    width: 60px;
+    height: 60px;
+    background: var(--brand-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    box-shadow: 0 10px 20px rgba(8, 113, 171, 0.3);
+}
+
+.journey-step h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.journey-step p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* 4. BENEFICIOS ESTILO BENTO */
+.benefits-bento {
+    padding: 80px 0;
+    background: var(--bg-light);
+}
+
+body.dark-mode .benefits-bento { background: #0f0f0f; }
+
+.benefits-bento .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.benefits-bento .bento-item {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease;
+}
+
+.benefits-bento .bento-item i {
+    font-size: 2rem;
+    color: var(--brand-blue);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.benefits-bento .bento-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+/* Variantes de Color para el Bento */
+.bento-item.main-blue {
+    background: var(--brand-blue);
+}
+.bento-item.main-blue h3, 
+.bento-item.main-blue p, 
+.bento-item.main-blue i { 
+    color: white !important; 
+}
+
+.bento-item.orange-accent {
+    background: var(--brand-orange);
+}
+.bento-item.orange-accent h3, 
+.bento-item.orange-accent p, 
+.bento-item.orange-accent i { 
+    color: white !important; 
+}
+
+/* 5. TESTIMONIOS PREMIUM */
+.comm-reviews {
+    padding: 100px 0;
+}
+
+.review-box-premium {
+    background: var(--bg-card);
+    padding: 60px;
+    border-radius: 40px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-soft);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.review-stars {
+    color: #ffcc00;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.review-box-premium p {
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.review-box-premium .author {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--brand-blue);
+}
+
+/* 6. RESPONSIVO */
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-image-box {
+        height: 300px;
+        margin-top: 40px;
+    }
+
+    .glass-comm-card {
+        right: 20px;
+    }
+
+    .journey-container {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .journey-line {
+        display: none;
+    }
+
+    .benefits-bento .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .review-box-premium {
+        padding: 40px 20px;
+    }
+}
+
+/* --- CORPORATE PAGE ADDITIONS --- */
+
+.corp-split-section {
+    padding: 80px 0;
+}
+
+.corp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.corp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    padding: 50px 40px;
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.corp-card:hover {
+    transform: translateY(-8px);
+}
+
+.corp-card.highlight {
+    background: linear-gradient(145deg, var(--bg-card) 0%, rgba(8, 113, 171, 0.05) 100%);
+    border: 1px solid rgba(8, 113, 171, 0.2);
+}
+
+.icon-header {
+    width: 70px;
+    height: 70px;
+    background: var(--icon-bg-gray);
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    color: var(--text-main);
+    margin-bottom: 25px;
+}
+
+.corp-card.highlight .icon-header {
+    background: var(--brand-blue);
+    color: white;
+}
+
+.corp-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.corp-card .subtitle {
+    font-size: 1.1rem;
+    color: var(--brand-orange);
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.corp-card .desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Checklist Styles */
+.check-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.check-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: var(--text-main);
+}
+
+.check-list li i {
+    color: var(--brand-blue);
+    font-size: 1.2rem;
+}
+
+/* Industries Section */
+.industries-section {
+    padding: 60px 0;
+    text-align: center;
+    background: var(--bg-light);
+}
+body.dark-mode .industries-section { background: #0f0f0f; }
+
+.industries-section h2 {
+    margin-bottom: 40px;
+    font-size: 2rem;
+    color: var(--text-main);
+}
+
+.industry-scroller {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.ind-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.ind-item:hover {
+    color: var(--brand-blue);
+}
+
+.ind-item i {
+    font-size: 2.5rem;
+}
+
+.ind-item span {
+    font-weight: 600;
+}
+
+/* Utility for centering actions */
+.justify-center {
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .corp-grid { grid-template-columns: 1fr; }
+    .corp-card { padding: 30px 20px; }
+    .industry-scroller { gap: 30px; }
+    .ind-item { width: 40%; } /* 2 per row on mobile */
+}

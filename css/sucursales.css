@@ -1,0 +1,137 @@
+/* --- SUCURSALES PAGE STYLES --- */
+
+/* Page Header */
+.locations-page {
+    padding: 160px 0 80px; /* Space for fixed navbar */
+    min-height: 100vh;
+}
+
+.page-title {
+    text-align: center;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.page-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 60px;
+}
+
+/* Location Card Container */
+.location-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    box-shadow: var(--shadow-soft);
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split 50/50 */
+    overflow: hidden; /* Keeps map corners rounded */
+    margin-bottom: 60px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+/* Info Section (Left Side) */
+.loc-info {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.badge-loc {
+    display: inline-block;
+    background: rgba(253, 151, 18, 0.15);
+    color: var(--brand-orange);
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: fit-content;
+    margin-bottom: 20px;
+}
+
+.badge-loc.blue {
+    background: rgba(8, 113, 171, 0.15);
+    color: var(--brand-blue);
+}
+
+.loc-info h2 {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+    color: var(--text-main);
+}
+
+/* Details List */
+.details-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.detail-item .icon {
+    width: 24px;
+    height: 24px;
+    color: var(--brand-orange); /* Icons stay orange */
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.detail-item p {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Map Section (Right Side) */
+.loc-map {
+    width: 100%;
+    min-height: 400px;
+    background: #eee;
+    filter: grayscale(10%); /* Subtle aesthetic filter */
+}
+
+/* Dark Mode Fixes */
+body.dark-mode .loc-map {
+    filter: grayscale(30%) invert(90%); /* Cool trick to make Google Maps look "Dark Mode" */
+}
+
+/* Responsive (Mobile) */
+@media (max-width: 900px) {
+    .location-card {
+        grid-template-columns: 1fr; /* Stack vertically */
+    }
+
+    .location-card.reverse {
+        display: flex;
+        flex-direction: column-reverse; /* Put map on top or bottom consistently */
+    }
+
+    .loc-info {
+        padding: 40px 30px;
+    }
+
+    .loc-map {
+        height: 300px;
+        min-height: 300px;
+    }
+    
+    .page-title { margin-top: 20px; }
+}

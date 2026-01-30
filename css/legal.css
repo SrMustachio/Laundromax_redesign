@@ -1,0 +1,114 @@
+/* --- LEGAL PAGE STYLES (Privacy Policy / Terms) --- */
+
+.legal-page {
+    padding: 160px 0 100px; /* Space for navbar */
+    background-color: var(--bg-main);
+    min-height: 100vh;
+}
+
+.legal-container {
+    max-width: 800px; /* Narrower width for better reading experience */
+    margin: 0 auto;
+}
+
+/* Header */
+.legal-header {
+    text-align: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 40px;
+}
+
+.legal-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--text-main);
+    margin-bottom: 10px;
+}
+
+.legal-header .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Content Sections */
+.legal-content section {
+    margin-bottom: 50px;
+}
+
+.legal-content h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.legal-content p {
+    font-size: 1.05rem;
+    line-height: 1.8; /* Relaxed line height for reading */
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+/* Lists */
+.legal-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+}
+
+.legal-content li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.legal-content strong {
+    color: var(--text-main);
+}
+
+/* Links */
+.legal-content a {
+    color: var(--brand-blue);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.2s ease;
+}
+
+.legal-content a:hover {
+    color: var(--brand-orange);
+}
+
+/* Address Styling */
+address {
+    font-style: normal;
+    color: var(--text-main);
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    display: inline-block;
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* Dark Mode Handling */
+/* Note: Since we used var(--bg-main), var(--text-main), etc., 
+   it will automatically switch colors based on main.css settings. */
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .legal-page {
+        padding: 120px 24px 60px;
+    }
+    
+    .legal-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .legal-content h2 {
+        font-size: 1.3rem;
+    }
+}

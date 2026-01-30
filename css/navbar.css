@@ -1,0 +1,181 @@
+.nav-island {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1080px;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 100px;
+    padding: 10px 10px;
+    z-index: 1000;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+}
+
+.nav-content { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 15px;
+}
+
+.logo { 
+    font-size: 1.3rem; 
+    font-weight: 800; 
+    text-decoration: none; 
+    color: #1d1d1f; 
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.5px;
+}
+
+.logo span { color: #fd9712; }
+
+.nav-links { 
+    display: flex; 
+    list-style: none; 
+    gap: 32px; 
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a { 
+    text-decoration: none; 
+    color: #1d1d1f; 
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    transition: color 0.2s;
+}
+
+.nav-links a:hover { color: #0871ab; }
+
+.login-link { opacity: 0.8; }
+
+.nav-btn {
+    background: #fd9712;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.nav-btn:hover { background: #e88b0f; }
+
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+}
+
+/* Add to css/navbar.css */
+
+.theme-toggle {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--brand-dark); /* Uses our variable for auto-switching */
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(15deg);
+}
+
+/* Icon visibility logic */
+.icon-moon { display: none; }
+.icon-sun { display: block; }
+
+/* When Dark Mode is Active */
+body.dark-mode .theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffcc00; /* Moon color */
+}
+
+body.dark-mode .icon-sun { display: none; }
+body.dark-mode .icon-moon { display: block; }
+
+/* Ensure mobile menu matches theme */
+.mobile-menu {
+    background: var(--bg-main); /* Will become black in dark mode */
+}
+body.dark-mode .mobile-links a {
+    color: var(--text-main);
+}
+
+/* --- NAVBAR DROPDOWN STYLES --- */
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown .fa-chevron-down {
+    font-size: 0.7rem;
+    margin-left: 5px;
+    transition: transform 0.3s;
+}
+
+.dropdown:hover .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--bg-card); /* Adaptive background */
+    min-width: 220px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 12px;
+    padding: 10px 0;
+    border: 1px solid var(--border-color);
+    z-index: 1000;
+    flex-direction: column;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: flex;
+    animation: fadeIn 0.2s ease;
+}
+
+.dropdown-content a {
+    padding: 12px 20px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(0,0,0,0.05);
+    color: var(--brand-orange);
+}
+
+/* Dark Mode tweaks for dropdown */
+body.dark-mode .dropdown-content {
+    background-color: #1c1c1e;
+    border-color: rgba(255,255,255,0.1);
+}
+
+body.dark-mode .dropdown-content a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}

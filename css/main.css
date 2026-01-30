@@ -1,0 +1,443 @@
+/* =========================================
+   1. GLOBAL VARIABLES & RESET
+   ========================================= */
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    /* Brand Colors */
+    --brand-orange: #fd9712;
+    --brand-blue: #0871ab;
+    
+    /* LIGHT MODE (Default) */
+    --bg-main: #fbfbfd;
+    --bg-card: #ffffff;
+    --text-main: #1d1d1f;
+    --text-muted: #666666;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --border-color: rgba(0, 0, 0, 0.05);
+    --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.05);
+    --icon-bg-gray: #f5f5f7;
+    
+    /* Layout */
+    --radius-lg: 24px;
+    --padding-container: clamp(1rem, 5vw, 3rem);
+    --font-size-h1: clamp(2.2rem, 8vw, 3.8rem);
+}
+
+/* =========================================
+   2. DARK MODE OVERRIDES
+   ========================================= */
+body.dark-mode {
+    --bg-main: #0a0a0a;       /* Deep Black */
+    --bg-card: #1c1c1e;       /* Dark Grey for Cards */
+    --text-main: #f5f5f7;     /* Off-White Text */
+    --text-muted: #a1a1a6;    /* Light Grey Text */
+    --glass-bg: rgba(20, 20, 20, 0.85);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.5); 
+    --icon-bg-gray: #2c2c2e;
+}
+
+/* Dark Mode Specific Fixes */
+body.dark-mode .logo { color: #ffffff; }
+body.dark-mode .nav-links a { color: var(--text-main); }
+body.dark-mode .nav-links a:hover { color: var(--brand-orange); }
+body.dark-mode .google-badge { background: var(--bg-card); color: var(--text-main); }
+body.dark-mode .google-badge .count { color: var(--text-muted); }
+
+/* Force icons to match text color in Dark Mode */
+body.dark-mode .bento-item.gray svg,
+body.dark-mode .bento-item.soft-gray svg {
+    stroke: #ffffff !important; 
+}
+
+/* =========================================
+   3. BASE STYLES & TYPOGRAPHY
+   ========================================= */
+body {
+    background-color: var(--bg-main);
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { 
+    font-family: 'Poppins', sans-serif; 
+}
+
+h1 { 
+    font-size: var(--font-size-h1); 
+    line-height: 1.1; 
+    margin-bottom: 24px; 
+    font-weight: 800; 
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--padding-container);
+}
+
+/* Button Standard */
+.btn-primary {
+    background: linear-gradient(135deg, var(--brand-orange) 0%, #ff8c00 100%);
+    color: var(--white);
+    padding: 12px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: inline-block;
+    box-shadow: 0 8px 20px rgba(253, 151, 18, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover { transform: translateY(-2px); }
+
+/* =========================================
+   4. HERO SECTION
+   ========================================= */
+.hero-2026 { 
+    padding: 160px 0 40px; 
+}
+
+.hero-layout { 
+    display: grid; 
+    grid-template-columns: 1.1fr 1fr; 
+    gap: 60px; 
+    align-items: center; 
+}
+
+.badge { 
+    color: var(--brand-blue); 
+    font-weight: 800; 
+    font-size: 0.8rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px; 
+    margin-bottom: 10px;
+    display: block;
+}
+
+.hero-text h1 { 
+    font-size: 3.8rem; 
+    line-height: 1.1; 
+    margin-bottom: 24px; 
+    color: var(--brand-dark);
+}
+
+/* Note: In dark mode, we let the h1 inherit var(--text-main) via body, 
+   but specific overrides might be needed if brand-dark is hardcoded above. */
+body.dark-mode .hero-text h1 { color: var(--text-main); }
+
+.highlight { color: var(--brand-orange); }
+
+.hero-text p { 
+    font-size: 1.15rem; 
+    color: var(--text-muted); 
+    margin-bottom: 40px; 
+    max-width: 480px; 
+}
+
+.hero-visual {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    background: transparent; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.float-animation {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Glass card inside hero */
+.glass-card { 
+    position: absolute; 
+    bottom: 40px; 
+    left: 40px; 
+    background: #fd9712a1;
+    padding: 15px 25px; 
+    border-radius: 16px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+    font-weight: 600; 
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(10px);
+    color: #1d1d1f;
+}
+
+/* =========================================
+   5. MISSION BANNER (FLOATING)
+   ========================================= */
+.mission-banner {
+    max-width: 1200px;
+    margin: 60px auto; 
+    border-radius: 30px;
+    background: linear-gradient(120deg, var(--brand-orange) 0%, #ff5e00 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 40px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(253, 151, 18, 0.3);
+}
+
+.mission-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
+}
+
+.mission-banner h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: white !important;
+}
+
+.mission-banner p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+    color: white !important;
+}
+
+/* Dark Mode Banner Fix */
+body.dark-mode .mission-banner {
+    background: linear-gradient(135deg, #e08300 0%, #d16f00 100%);
+    color: white;
+}
+
+/* =========================================
+   6. SERVICES GRID
+   ========================================= */
+.services-section { padding: 50px 0; }
+.section-title { text-align: center; margin-bottom: 40px; font-size: 2.5rem; font-weight: 700; color: var(--text-main); }
+
+.bento-grid { 
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 24px; 
+    grid-auto-rows: 1fr; 
+}
+
+.bento-item { 
+    background: var(--bg-card); 
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg); 
+    padding: 30px; 
+    box-shadow: var(--shadow-soft); 
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    height: auto; 
+    min-height: auto;
+}
+
+.bento-item:hover { transform: translateY(-5px); }
+
+.bento-item h3 { 
+    font-size: 1.4rem; 
+    margin-bottom: 10px; 
+    margin-top: 15px; 
+    color: var(--text-main); 
+}
+
+.bento-item p { 
+    font-size: 1rem; 
+    opacity: 0.9; 
+    color: var(--text-muted); 
+    margin: 0;
+}
+
+/* Icon Styles */
+.icon-bg {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.orange-light { background: rgba(253, 151, 18, 0.15); }
+.white-alpha { background: rgba(255, 255, 255, 0.2); }
+.white-bg { background: white; }
+.gray-light { background: var(--icon-bg-gray); }
+
+/* Service Card Variants */
+.main-service { background: var(--bg-card); }
+
+.blue { background: var(--brand-blue); border: none; }
+.blue h3, .blue p { color: white !important; }
+
+.orange { background: var(--brand-orange); border: none; }
+.orange h3, .orange p { color: white !important; }
+
+.soft-gray { background: #f0f2f5; border: 1px solid rgba(0,0,0,0.05); }
+.soft-gray h3 { color: #1d1d1f; }
+.soft-gray p { color: #666; }
+
+.navy { background: #1d1d1f; color: white; border: none; }
+.navy h3, .navy p { color: white !important; }
+
+/* Dark Mode Card Adjustments */
+body.dark-mode .soft-gray {
+    background: #1c1c1e;
+    border-color: rgba(255,255,255,0.1);
+}
+body.dark-mode .soft-gray h3 { color: white; }
+body.dark-mode .soft-gray p { color: #aaa; }
+
+body.dark-mode .navy { background: #2c2c2e; }
+
+
+/* =========================================
+   7. REVIEWS SECTION
+   ========================================= */
+.reviews-section {
+    padding: 60px 0 80px;
+    background: linear-gradient(to bottom, var(--bg-card) 0%, var(--bg-main) 100%);
+}
+
+.reviews-header {
+    text-align: center;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.google-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-card);
+    padding: 10px 24px;
+    border-radius: 50px;
+    box-shadow: var(--shadow-soft);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+}
+.google-badge:hover { transform: scale(1.02); }
+
+.google-badge .count {
+    text-decoration: none;
+    color: var(--text-muted);
+}
+
+.g-icon {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    background: linear-gradient(45deg, #4285F4, #EA4335, #FBBC05, #34A853);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    align-items: start;
+}
+
+.review-card {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: -webkit-fill-available;
+}
+
+.review-text {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 15px 0 25px;
+    font-style: italic;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 42px; height: 42px;
+    background: #333; color: white;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+.avatar.blue { background: var(--brand-blue); }
+.avatar.orange { background: var(--brand-orange); }
+.avatar.white { background: #eee; color: #333; }
+
+.review-author .name { display: block; font-weight: 700; font-size: 0.9rem; color: var(--text-main); }
+.review-author .source { display: block; font-size: 0.75rem; color: var(--text-muted); }
+
+/* Featured review spans 2 columns */
+@media (min-width: 900px) {
+    .review-card.large { grid-column: span 2; }
+}
+
+/* =========================================
+   8. MEDIA QUERIES & RESPONSIVE
+   ========================================= */
+
+/* Mobile Phones (< 480px) */
+@media (max-width: 480px) {
+    .hero-layout { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+    .hero-visual { height: 220px; border-radius: 20px; display: block; margin-top: 10px; }
+    .bento-grid { grid-template-columns: 1fr; gap: 15px; }
+    .mission-banner { margin: 40px 20px; padding: 50px 20px; border-radius: 20px; }
+    .glass-card { display: none; }
+}
+
+/* Tablets / Folded Devices (481px - 1024px) */
+@media (min-width: 481px) and (max-width: 1024px) {
+    .hero-layout { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+        gap: 40px; 
+    }
+    .hero-text p { margin: 0 auto 30px auto; max-width: 600px; }
+    .hero-visual { height: 350px; max-width: 80%; margin: 0 auto; }
+    .bento-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .main-service { grid-column: span 1; }
+}
+
+/* Landscape Mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-2026 { padding: 80px 0; }
+    .hero-visual { display: none; } 
+}
